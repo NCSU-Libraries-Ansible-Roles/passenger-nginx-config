@@ -1,0 +1,16 @@
+---
+- name: passenger.conf
+  template:
+    src: passenger.conf
+    dest: /etc/nginx/conf.d/passenger.conf
+
+# TODO: For now each project should create their own template for their server.
+# You'll add a task something like the following. See image-server role for
+# an example.
+# - name: nginx configuration file
+#   template:
+#     src: nginx.conf
+#     dest: "/etc/nginx/conf.d/{{project_name}}-nginx.conf"
+
+- name: restart nginx
+  service: name=nginx state=started enabled=yes
